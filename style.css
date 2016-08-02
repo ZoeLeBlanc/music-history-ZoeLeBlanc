@@ -84,7 +84,7 @@ nav ul li.selected a {
     font-size: 1em;
 }
 /*Main styles */
-.main {
+#main {
 	display: flex;
 	flex-basis: 70%;
 	background-color: #FEFAC0; 
