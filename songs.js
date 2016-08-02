@@ -12,8 +12,7 @@ songs.push("Retro > by Childish Gambino");
 console.log(songs);
 var newSongs = songs.toString();
 newSongs = newSongs.replace(/[>]/gi, "-");
-newSongs = newSongs.replace(/[@]/gi, "a");
-newSongs = newSongs.replace(/[*!(]/gi, "");
+newSongs = newSongs.replace(/[*!(@]/gi, "");
 songSplit = newSongs.split(",");
 for (var song in songSplit) {
 	mainContent.innerHTML += "<li>" + songSplit[song] + "</li>";
