@@ -1,3 +1,4 @@
+var mainContent = document.getElementById("mainContent");
 var songs = [];
 
 songs[songs.length] = "Legs > by Z*ZTop on the album Eliminator";
@@ -13,12 +14,17 @@ var newSongs = songs.toString();
 newSongs = newSongs.replace(/[>]/gi, "-");
 newSongs = newSongs.replace(/[@]/gi, "a");
 newSongs = newSongs.replace(/[*!(]/gi, "");
-console.log(newSongs);
-var mainSection = document.getElementsById("main");
-for (var song in newSongs){
-	main.innerHTML += "<section>" + song + "</section>";
+songSplit = newSongs.split(",");
+for (var song in songSplit) {
+	mainContent.innerHTML += "<li>" + songSplit[song] + "</li>";
 }
-/*
+
+/*for (var i = 0; i < songSplit.length; i++) {
+	main.innerHTML += "<li>" + songSplit[i] + "</li>";
+	
+}
+
+
 Use JavaScript arrays, loops, and innerHTML to show the music you love.
 
 Students must use JavaScript to create a list of songs in the index.html file for their Music History project. Have them download the songs.js file, which contains an array of strings with song information.
