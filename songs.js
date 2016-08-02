@@ -15,7 +15,7 @@ newSongs = newSongs.replace(/[@]/gi, "a");
 newSongs = newSongs.replace(/[*!(]/gi, "");
 console.log(newSongs);
 var mainSection = document.getElementsById("main");
-for (song in newSongs){
+for (var song in newSongs){
 	main.innerHTML += "<section>" + song + "</section>";
 }
 /*
