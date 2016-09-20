@@ -14,7 +14,7 @@ nav {
 	display: flex;
 
 	background-color: #FFB4B0;
-	height: 60px;
+	height: 10em;
 	border: 2px solid black;
 	margin: 1em;
 }
@@ -57,7 +57,7 @@ nav ul li.selected a {
 }
 
 /*Sidebar styles */
-.container {
+.container{
 	display: flex;
 	flex-direction: row;
 	margin: 0;
@@ -117,6 +117,13 @@ nav ul li.selected a {
 	font-size: 1.1em;
     margin-right: 15px;
 }
+button {
+	border-radius: 0.5em;
+    background-color: lightgrey;
+    border: 2px solid black;
+    margin: 1em;
+    font-size: 1em;
+}
 /*section h1 {
 	margin: 0;
 	padding: 0;
@@ -153,6 +160,10 @@ content: none;
     justify-content: center;
     padding: 1em;
     margin: 1em;
+    width: 100%;
+	flex-direction: row;
+	margin: 0;
+	height: 100%;
 }
 /*.newmusic {
 	display: flex;

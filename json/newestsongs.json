@@ -1,0 +1,14 @@
+{
+  "songs" : [
+    {
+      "name": "Hotline Bling",
+      "artist": "Drake",
+      "album": "Views"
+    },
+    {
+      "name": "Work",
+      "artist": "Rihanna",
+      "album": "Anti"
+    }
+  ]
+}
