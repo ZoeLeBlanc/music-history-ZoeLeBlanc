@@ -1,53 +1,39 @@
+//Get XHR
+Music.loadFixedSongs();
+//Get element
 var mainContent = document.getElementById("mainContent");
 var addMusicBtn = document.getElementById("addMusic");
 var listMusicBtn = document.getElementById("list-view");
-var songs = [];
-
-songs[songs.length] = "Legs > by Z*ZTop on the album Eliminator";
-songs[songs.length] = "The Logical Song > by Supertr@amp on the album Breakfast in America";
-songs[songs.length] = "Another Brick in the Wall > by Pink Floyd on the album The Wall";
-songs[songs.length] = "Welco(me to the Jungle > by Guns & Roses on the album Appetite for Destruction";
-songs[songs.length] = "Ironi!c > by Alanis Moris*ette on the album Jagged Little Pill";
-
-songs.unshift("What a Fool Believes > by the Doobie Brothers");
-songs.push("Retro > by Childish Gambino");
-
+var deleteBtn = document.getElementById("delete-button")
+//Get user input
 var userSong = document.getElementById("user-song");
 var userArtist = document.getElementById("user-artist");
 var userAlbum = document.getElementById("user-album");
-addMusicBtn.addEventListener("click", function(event){
-	console.log(userSong.value);
-	console.log(userArtist.value);
-	console.log(userAlbum.value);
-	var userInput = `${userSong.value} by ${userArtist.value} on ${userAlbum.value}`;
-	songs.push(userInput);
-	console.log(songs);
-});
-
-userAlbum.addEventListener("keypress", function(event){
-	if (event.keyCode == 13){
-		console.log(userSong.value);
-		console.log(userArtist.value);
-		console.log(userAlbum.value);
-		var userInput = `${userSong.value} by ${userArtist.value} on ${userAlbum.value}`;
-		songs.push(userInput);
-		console.log(songs);
-	}
-});
-
-function listMusic(){
-	mainContent.innerHTML = "";
-	var newSongs = songs.toString();
-	console.log(newSongs);
-	newSongs = newSongs.replace(/[>]/gi, "-");
-	newSongs = newSongs.replace(/[*!(@]/gi, "");
-	songSplit = newSongs.split(",");
-	for (var song in songSplit) {
-		mainContent.innerHTML += "<ul><li>" + songSplit[song] + "</li></ul>";
+//Push to DOM
+function printSongs(listOfSongs){
+	mainContent.innerHTML = "";	
+	for (var i = listOfSongs.length-1; i>=0; i--) {
+		mainContent.innerHTML += `<li id=${i}>${listOfSongs[i].name} by ${listOfSongs[i].artist} on ${listOfSongs[i].album}<button id=delete-button>Delete</button></div></li>`;
 	}
 };
-listMusicBtn.addEventListener("click", function(event){
-	listMusic();
+//Event Listeners
+addMusicBtn.addEventListener("click", function(event){
+	Music.appendNewSongs(userSong.value, userArtist.value, userAlbum.value)
 });
-
-listMusic();
+userAlbum.addEventListener("keypress", function(event){
+	if (event.keyCode == 13){
+		Music.appendNewSongs(userSong.value, userArtist.value, userAlbum.value);
+	}
+});
+listMusicBtn.addEventListener("click", function(event){
+	Music.getSongs();
+});
+document.querySelector("body").addEventListener("click", function(event) {
+	if (event.target.id === "delete-button"){
+		 var elementToDelete = event.target.parentNode;
+    Music.removeFromDOM(elementToDelete);
+    var idToDelete = event.target.parentNode.id;
+    Music.removeFromArray(idToDelete);
+	}
+	
+});

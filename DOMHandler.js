@@ -11,9 +11,9 @@ listView.addEventListener("click", function(event) {
   addViewAnchor.classList.remove("visible");
   addViewAnchor.classList.add("hidden");
 
-
-  listViewAnchor.classList.add("visible");
   listViewAnchor.classList.remove("hidden");
+  listViewAnchor.classList.add("visible");
+  
 });
 
 //var addLink = document.getElementById("link-add");
@@ -24,9 +24,9 @@ addView.addEventListener("click", function() {
   //homeView.classList.add("hidden");
   listViewAnchor.classList.remove("visible");
   listViewAnchor.classList.add("hidden");
-
-  addViewAnchor.classList.add("visible");
   addViewAnchor.classList.remove("hidden");
+  addViewAnchor.classList.add("visible");
+  
 	var userSong = document.getElementById("user-song");
 	var userArtist = document.getElementById("user-artist");
 	var userAlbum = document.getElementById("user-album");

@@ -23,52 +23,52 @@
 </section> -->
 <!-- List Music View -->
 <section class="visible" id="list-view-anchor">
-<!-- Sidebar -->
-<div class="container">
-<div class="sidebar">
-	<div class="options">
-	<label for="length">Some length</label>
-	<input type="range" min="0" max="100" value="50" id="length">
-	<label for="artist">Artist:</label>
-	<select name="artist" >
-		<option value="" disabled selected>Options</option>
-		<option value="Drake">Drake</option>
-		<option value="YoYoMa">Yo Yo Ma</option>
-		<option value="Beyonce">Beyonce</option>
-		<option value="HamiltonMusical">Hamilton Musical</option>
-		<option value="NinaSimone">Nina Simone</option>
-	</select>
+	<!-- Sidebar -->
+	<div class="container">
+	<div class="sidebar">
+		<div class="options">
+		<label for="length">Some length</label>
+		<input type="range" min="0" max="100" value="50" id="length">
+		<label for="artist">Artist:</label>
+		<select name="artist" >
+			<option value="" disabled selected>Options</option>
+			<option value="Drake">Drake</option>
+			<option value="YoYoMa">Yo Yo Ma</option>
+			<option value="Beyonce">Beyonce</option>
+			<option value="HamiltonMusical">Hamilton Musical</option>
+			<option value="NinaSimone">Nina Simone</option>
+		</select>
 
-	<label for="album">Album:</label>
-	<select name="album" >
-		<option value="" disabled selected>Options</option>
-		<option value="Drake">Drake</option>
-		<option value="YoYoMa">Yo Yo Ma</option>
-		<option value="Beyonce">Beyonce</option>
-		<option value="HamiltonMusical">Hamilton Musical</option>
-		<option value="NinaSimone">Nina Simone</option>
-	</select>
+		<label for="album">Album:</label>
+		<select name="album" >
+			<option value="" disabled selected>Options</option>
+			<option value="Drake">Drake</option>
+			<option value="YoYoMa">Yo Yo Ma</option>
+			<option value="Beyonce">Beyonce</option>
+			<option value="HamiltonMusical">Hamilton Musical</option>
+			<option value="NinaSimone">Nina Simone</option>
+		</select>
+		</div>
+		<div class="genre">
+		<label for="genre">Genre:</label><br>
+		<form>
+		<input type="checkbox" name="rock" value="rock">Rock<br>
+		<input type="checkbox" name="pop" value="pop">Pop<br>
+		<input type="checkbox" name="blues" value="blues">Blues<br>
+		<input type="checkbox" name="classical" value="classical">Classical<br>
+		<input type="checkbox" name="jazz" value="jazz">Jazz<br>
+		<input type="checkbox" name="hiphop" value="hiphop">Hip hop<br>
+		</form>
+		</div>
+		<button type="submit">Filter</button>
 	</div>
-	<div class="genre">
-	<label for="genre">Genre:</label><br>
-	<form>
-	<input type="checkbox" name="rock" value="rock">Rock<br>
-	<input type="checkbox" name="pop" value="pop">Pop<br>
-	<input type="checkbox" name="blues" value="blues">Blues<br>
-	<input type="checkbox" name="classical" value="classical">Classical<br>
-	<input type="checkbox" name="jazz" value="jazz">Jazz<br>
-	<input type="checkbox" name="hiphop" value="hiphop">Hip hop<br>
-	</form>
-	</div>
-	<button type="submit">Filter</button>
-</div>
 
   <!-- Main Content -->
-<div id="mainContent">
+	<div id="mainContent">
 
 
-</div>
-
+	</div>
+</section>
 <!-- Add Music View -->
 <section class="hidden" id="add-view-anchor">
   <div id="userMusic">
@@ -78,11 +78,8 @@
   	 <button type="submit" id="addMusic">Add Music</button>
   </div>
 </section>
-
-
-
-</div>
+	<script type="text/javascript" src="xhr.js"></script>
+	<script src="songs.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script type="text/javascript" src="DOMHandler.js"></script>
 </body>
-<script src="songs.js" type="text/javascript" charset="utf-8" async defer></script>
-<script type="text/javascript" src="DOMHandler.js"></script>
 </html>
