@@ -3,32 +3,37 @@ var Music = (function () {
 
   return {
     loadFixedSongs: function() {
-      var mySongs = [ "json/newsongs.json", "json/songs.json" ];
-      for (var i = 0; i < mySongs.length; i++) {
-        console.log(mySongs);
-        var messageLoader = new XMLHttpRequest();
-        messageLoader.addEventListener("load", function() {
-          var data = JSON.parse(this.responseText);
-          for (var j = 0; j < data.songs.length; j++) {
-            songs.push(data.songs[j]);
-            printSongs(songs);
-          } 
-        });
-        messageLoader.open("GET", mySongs[i]);
-        messageLoader.send();
-      }
+      // $.when(
+      //   $.getJSON('json/newsongs.json'),
+      //   $.getJSON('json/oldsongs.json')
+      // ).done(function(newsongs, oldsongs) {
+      //   songs = newsongs.songs;
+      //   // songs.forEach( (song) => {
+      //       console.log(songs);
+      //   // });
+      // });
+      $.ajax({
+        url: "json/oldsongs.json"
+      }).done(function(songData) {
+        songs = songData.songs;
+        printSongs(songs);
+      });
     },
     loadNewSongs: function() {
-      var messageLoader = new XMLHttpRequest();
-        messageLoader.addEventListener("load", function() {
-          var data = JSON.parse(this.responseText);
-          for (var j = 0; j < data.songs.length; j++) {
-            songs.push(data.songs[j]);
-            printSongs(songs);
-          } 
+      $.ajax({
+        url: "json/newestsongs.json"
+      }).done(function(songData) {
+        var newSongs = songData.songs;
+        $.each(newSongs, function(index, song)
+        {   
+              songs.push(song); 
+              printSongs(songs);
         });
-        messageLoader.open("GET", "json/newestsongs.json");
-        messageLoader.send();
+       // songs.push(newSongs);
+        
+        // printSongs(songs);
+        //   console.log("newSongs", newSongs.songs);
+      });
     },
     appendNewSongs: function(song, artist, album) {
       songs.push({'name':song, 'artist':artist, 'album':album});
@@ -39,7 +44,8 @@ var Music = (function () {
     },
     removeFromDOM: function(DOMId) {
       var parent = DOMId.parentNode;
-      parent.removeChild(DOMId);
+      DOMId.remove();
+      // parent.remove(DOMId);
     },
     removeFromArray: function(songId) {
       var index = songs.indexOf(songId);

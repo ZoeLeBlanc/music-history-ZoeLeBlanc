@@ -1,58 +1,66 @@
-//Get XHR
+//XHR
 Music.loadFixedSongs();
-//Get element
-var mainContent = document.getElementById("mainContent");
-var addMusicBtn = document.getElementById("addMusic");
-var listMusicBtn = document.getElementById("list-view");
-var deleteBtn = document.getElementById("delete-button");
-var moreBtn = document.getElementById("moreMusic");
+//Get elements
+var mainContent = $("#mainContent");
+var addMusicBtn = $("#addMusic");
+var listMusicBtn = $("#list-view");
+var deleteBtn = $("#delete-button");
+var moreBtn = $("#moreMusic");
 //Get user input
-var userSong = document.getElementById("user-song");
-var userArtist = document.getElementById("user-artist");
-var userAlbum = document.getElementById("user-album");
+var userSong = $("#user-song");
+var userArtist = $("#user-artist");
+var userAlbum = $("#user-album");
 //Push to DOM
 function printSongs(listOfSongs){
-	mainContent.innerHTML = "";	
-	for (var i = listOfSongs.length-1; i>=0; i--) {
-		mainContent.innerHTML += `<li id=${i}>${listOfSongs[i].name} by ${listOfSongs[i].artist} on ${listOfSongs[i].album}<button id=delete-button>Delete</button></div></li>`;
-	};
-	mainContent.innerHTML += `<button id="moreMusic">More ></button>`
+	mainContent.html("");
+	mainContent.append(`<ul>`);
+	$.each(listOfSongs, (key, song) =>{
+		mainContent.append(`<li id=${key}>${song.name} by ${song.artist} on ${song.album}<button id=delete-button>Delete</button></div></li>`);
+		// console.log("each", song);
+	});
+	mainContent.append(`</ul>`);
+	mainContent.append(`<button id="moreMusic">More ></button>`);
 };
 //Event Listeners
-addMusicBtn.addEventListener("click", function(event){
-	console.log(userSong.value);
-	if (userSong.value = ""){
-		alert("Enter a song.");
-		console.log("hi");
-	} else {
-		Music.appendNewSongs(userSong.value, userArtist.value, userAlbum.value)
-	}
-	// if (userArtist.value = ""){
-	// 	prompt("Enter an Artist.");
-	// } 
-	// if (userAlbum.value = ""){
-	// 	prompt("Enter an Album.");
-	// } 
-	
+addMusicBtn.click(function(event){
+	// if (userSong.val("")){
+	// 	console.log(userSong.val());
+	// 	alert("Enter a song.");
+	// } else if (userArtist.val("")){
+	// 	alert("Enter an Artist.");
+	// } else if (userAlbum.val("")){
+	// 	alert ("Enter an Album.");
+	// } else {
+		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());	
+	// }
 });
-userAlbum.addEventListener("keypress", function(event){
+$("#userAlbum").keypress(function(event){
 	if (event.keyCode == 13){
 		Music.appendNewSongs(userSong.value, userArtist.value, userAlbum.value);
 	}
 });
-listMusicBtn.addEventListener("click", function(event){
+$("#listMusicBtn").click(function(event){
 	Music.getSongs();
 });
-document.querySelector("body").addEventListener("click", function(event) {
-	if (event.target.id === "delete-button"){
-		 var elementToDelete = event.target.parentNode;
+$(document).on("click", "#delete-button", function(event) {
+	var elementToDelete = event.target.parentNode;
     Music.removeFromDOM(elementToDelete);
     var idToDelete = event.target.parentNode.id;
     Music.removeFromArray(idToDelete);
-	}
-	if (event.target.id === "moreMusic") {
-		Music.loadNewSongs();
-	}
+});
+var counter = 0;
+$(document).on("click", "#moreMusic", function(event) {
 	
+	console.log(counter);
+	
+	
+	if (counter <= 1){
+		Music.loadNewSongs();
+		counter++;	
+		console.log(counter);
+	} else {
+		Music.getSongs();
+		counter++;
+	}
 });
 
