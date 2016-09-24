@@ -16,11 +16,12 @@ function printSongs(listOfSongs){
 	mainContent.append(`<ul>`);
 	$.each(listOfSongs, (key, song) =>{
 		mainContent.append(`<li id=${key}>${song.name} by ${song.artist} on ${song.album}<button id=delete-button>Delete</button></div></li>`);
-		// console.log("each", song);
 	});
 	mainContent.append(`</ul>`);
 	mainContent.append(`<button id="moreMusic">More ></button>`);
+	
 };
+
 //Event Listeners
 addMusicBtn.click(function(event){
 	// if (userSong.val("")){
@@ -31,15 +32,18 @@ addMusicBtn.click(function(event){
 	// } else if (userAlbum.val("")){
 	// 	alert ("Enter an Album.");
 	// } else {
-		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());	
+		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
+		userSong.val("");
+		userArtist.val("");
+		userAlbum.val("");	
 	// }
 });
-$("#userAlbum").keypress(function(event){
-	if (event.keyCode == 13){
-		Music.appendNewSongs(userSong.value, userArtist.value, userAlbum.value);
+userAlbum.keypress(function(event){
+	if (event.which == 13){
+		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
 	}
 });
-$("#listMusicBtn").click(function(event){
+listMusicBtn.click(function(event){
 	Music.getSongs();
 });
 $(document).on("click", "#delete-button", function(event) {
@@ -49,15 +53,10 @@ $(document).on("click", "#delete-button", function(event) {
     Music.removeFromArray(idToDelete);
 });
 var counter = 0;
-$(document).on("click", "#moreMusic", function(event) {
-	
-	console.log(counter);
-	
-	
-	if (counter <= 1){
+$(document).on("click", "#moreMusic", function(event) {	
+	if (counter < 1){
 		Music.loadNewSongs();
 		counter++;	
-		console.log(counter);
 	} else {
 		Music.getSongs();
 		counter++;

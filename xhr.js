@@ -12,12 +12,23 @@ var Music = (function () {
       //       console.log(songs);
       //   // });
       // });
-      $.ajax({
-        url: "json/oldsongs.json"
+       $.ajax({
+        url: "json/newsongs.json"
       }).done(function(songData) {
         songs = songData.songs;
-        printSongs(songs);
-      });
+        console.log(songs);
+          $.ajax({
+          url: "json/oldsongs.json"
+        }).done(function(songData) {
+          var newSongs = songData.songs;
+          $.each(newSongs, function(index, song)
+        {   
+              songs.push(song); 
+              console.log(songs);
+              printSongs(songs);
+          });
+        });
+      });  
     },
     loadNewSongs: function() {
       $.ajax({
@@ -29,10 +40,6 @@ var Music = (function () {
               songs.push(song); 
               printSongs(songs);
         });
-       // songs.push(newSongs);
-        
-        // printSongs(songs);
-        //   console.log("newSongs", newSongs.songs);
       });
     },
     appendNewSongs: function(song, artist, album) {
@@ -49,7 +56,8 @@ var Music = (function () {
     },
     removeFromArray: function(songId) {
       var index = songs.indexOf(songId);
-          songs.splice(index, 1); 
+          songs.splice(index, 1);
+          console.log(songs); 
     }
   }
 
