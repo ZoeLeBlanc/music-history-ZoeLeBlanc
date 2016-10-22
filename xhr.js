@@ -25,10 +25,15 @@ var Music = (function () {
         {   
               songs.push(song); 
               console.log(songs);
-              printSongs(songs);
+              
           });
+          printSongs(songs);
+        }).fail(function(error) {
+        console.log( "error" , error);
         });
-      });  
+      }).fail(function(error) {
+      console.log( "error" , error);
+      }); 
     },
     loadNewSongs: function() {
       $.ajax({
