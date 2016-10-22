@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     browserify: {
       js: {
           src: ['./javascripts/songs.js'],
-          dest: 'dist/app.js'
+          dest: 'dist/bundle.js'
       }
     },
     jshint: {
