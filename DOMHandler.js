@@ -1,12 +1,11 @@
-//var listLink = $("#link-list");
+//Get views
 var listView = $("#list-view");
 var addView = $("#add-view");
 var listViewAnchor = $("#list-view-anchor");
 var addViewAnchor = $("#add-view-anchor");
-
-listView.click(function(event) {
+//Get clicks
+listView.click((event)=>{
   event.preventDefault();
- // homeView.classList.add("hidden");
   addViewAnchor.removeClass("visible");
   addViewAnchor.addClass("hidden");
 
@@ -14,11 +13,7 @@ listView.click(function(event) {
   listViewAnchor.addClass("visible");
   
 });
-
-//var addLink = $("#link-add");
-
-
-addView.click(function(event) {
+addView.click((event) => {
   listViewAnchor.removeClass("visible");
   listViewAnchor.addClass("hidden");
   addViewAnchor.removeClass("hidden");

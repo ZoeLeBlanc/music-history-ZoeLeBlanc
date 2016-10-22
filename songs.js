@@ -24,19 +24,19 @@ function printSongs(listOfSongs){
 
 //Event Listeners
 addMusicBtn.click(function(event){
-	// if (userSong.val("")){
-	// 	console.log(userSong.val());
-	// 	alert("Enter a song.");
-	// } else if (userArtist.val("")){
-	// 	alert("Enter an Artist.");
-	// } else if (userAlbum.val("")){
-	// 	alert ("Enter an Album.");
-	// } else {
+	if (userSong.val()===""){
+		console.log(userSong.val());
+		alert("Enter a song.");
+	} else if (userArtist.val()===""){
+		alert("Enter an Artist.");
+	} else if (userAlbum.val()===""){
+		alert ("Enter an Album.");
+	} else {
 		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
 		userSong.val("");
 		userArtist.val("");
 		userAlbum.val("");	
-	// }
+	}
 });
 userAlbum.keypress(function(event){
 	if (event.which == 13){
