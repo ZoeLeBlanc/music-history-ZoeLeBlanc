@@ -1,6 +1,5 @@
 "use strict";
-const $ = require("jquery");
-const songs = require("./songs");
+
 var Music = {};
  let songs = [];
 

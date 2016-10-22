@@ -3,13 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     browserify: {
       js: {
-          src: ['./javascripts/main.js'],
+          src: ['./javascripts/songs.js'],
           dest: 'dist/app.js'
       }
     },
     jshint: {
       options: {
-        predef: [ "document", "console", "Music", "alert" ],
+        predef: [ "document", "console", "$", "Music", "alert" ],
         esnext: true,
         globalstrict: true,
         globals: {},

@@ -1,9 +1,9 @@
 "use strict";
-const $ = require("jquery");
+
 const xhr = require("./xhr");
 const DOM = require("./DOMHandler");
 //XHR
-Music.loadFixedSongs();
+xhr.Music.loadFixedSongs();
 //Get elements
 var mainContent = $("#mainContent");
 var addMusicBtn = $("#addMusic");
@@ -36,7 +36,7 @@ addMusicBtn.click(function(event){
 	} else if (userAlbum.val()===""){
 		alert ("Enter an Album.");
 	} else {
-		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
+		xhr.Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
 		userSong.val("");
 		userArtist.val("");
 		userAlbum.val("");	
@@ -44,25 +44,25 @@ addMusicBtn.click(function(event){
 });
 userAlbum.keypress((event)=>{
 	if (event.which == 13){
-		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
+		xhr.Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
 	}
 });
 listMusicBtn.click((event)=>{
-	Music.getSongs();
+	xhr.Music.getSongs();
 });
 $(document).on("click", "#delete-button", (event)=> {
 	var elementToDelete = event.target.parentNode;
-    Music.removeFromDOM(elementToDelete);
+    xhr.Music.removeFromDOM(elementToDelete);
     var idToDelete = event.target.parentNode.id;
-    Music.removeFromArray(idToDelete);
+    xhr.Music.removeFromArray(idToDelete);
 });
 var counter = 0;
 $(document).on("click", "#moreMusic", (event)=> {	
 	if (counter < 1){
-		Music.loadNewSongs();
+		xhr.Music.loadNewSongs();
 		counter++;	
 	} else {
-		Music.getSongs();
+		xhr.Music.getSongs();
 		counter++;
 	}
 });
