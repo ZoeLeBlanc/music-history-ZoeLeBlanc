@@ -1,11 +1,9 @@
 "use strict";
 
-const xhr = require("./xhr");
-const DOM = require("./DOMHandler");
-//XHR
-xhr.Music.loadFixedSongs();
+const axhr = require("./axhr");
+
 //Get elements
-var mainContent = $("#mainContent");
+
 var addMusicBtn = $("#addMusic");
 var listMusicBtn = $("#list-view");
 var deleteBtn = $("#delete-button");
@@ -15,16 +13,7 @@ var userSong = $("#user-song");
 var userArtist = $("#user-artist");
 var userAlbum = $("#user-album");
 //Push to DOM
-function printSongs(listOfSongs){
-	mainContent.html("");
-	mainContent.append(`<ul>`);
-	$.each(listOfSongs, (key, song) =>{
-		mainContent.append(`<li id=${key}>${song.name} by ${song.artist} on ${song.album}<button id=delete-button>Delete</button></div></li>`);
-	});
-	mainContent.append(`</ul>`);
-	mainContent.append(`<button id="moreMusic">More ></button>`);
-	
-}
+
 
 //Event Listeners
 addMusicBtn.click(function(event){
@@ -36,7 +25,7 @@ addMusicBtn.click(function(event){
 	} else if (userAlbum.val()===""){
 		alert ("Enter an Album.");
 	} else {
-		xhr.Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
+		axhr.Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
 		userSong.val("");
 		userArtist.val("");
 		userAlbum.val("");	
@@ -44,25 +33,26 @@ addMusicBtn.click(function(event){
 });
 userAlbum.keypress((event)=>{
 	if (event.which == 13){
-		xhr.Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
+		axhr.Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
 	}
 });
 listMusicBtn.click((event)=>{
-	xhr.Music.getSongs();
+	axhr.Music.getSongs();
 });
 $(document).on("click", "#delete-button", (event)=> {
 	var elementToDelete = event.target.parentNode;
-    xhr.Music.removeFromDOM(elementToDelete);
+    axhr.Music.removeFromDOM(elementToDelete);
     var idToDelete = event.target.parentNode.id;
-    xhr.Music.removeFromArray(idToDelete);
+    axhr.Music.removeFromArray(idToDelete);
 });
 var counter = 0;
 $(document).on("click", "#moreMusic", (event)=> {	
 	if (counter < 1){
-		xhr.Music.loadNewSongs();
+		axhr.Music.loadNewSongs();
 		counter++;	
 	} else {
-		xhr.Music.getSongs();
+		axhr.Music.getSongs();
 		counter++;
 	}
 });
+
