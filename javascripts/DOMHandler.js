@@ -1,3 +1,5 @@
+"use strict";
+const $ = require("jquery");
 //Get views
 var listView = $("#list-view");
 var addView = $("#add-view");
@@ -19,3 +21,4 @@ addView.click((event) => {
   addViewAnchor.removeClass("hidden");
   addViewAnchor.addClass("visible");
 });
+

@@ -1,3 +1,7 @@
+"use strict";
+const $ = require("jquery");
+const xhr = require("./xhr");
+const DOM = require("./DOMHandler");
 //XHR
 Music.loadFixedSongs();
 //Get elements
@@ -20,7 +24,7 @@ function printSongs(listOfSongs){
 	mainContent.append(`</ul>`);
 	mainContent.append(`<button id="moreMusic">More ></button>`);
 	
-};
+}
 
 //Event Listeners
 addMusicBtn.click(function(event){
@@ -38,22 +42,22 @@ addMusicBtn.click(function(event){
 		userAlbum.val("");	
 	}
 });
-userAlbum.keypress(function(event){
+userAlbum.keypress((event)=>{
 	if (event.which == 13){
 		Music.appendNewSongs(userSong.val(), userArtist.val(), userAlbum.val());
 	}
 });
-listMusicBtn.click(function(event){
+listMusicBtn.click((event)=>{
 	Music.getSongs();
 });
-$(document).on("click", "#delete-button", function(event) {
+$(document).on("click", "#delete-button", (event)=> {
 	var elementToDelete = event.target.parentNode;
     Music.removeFromDOM(elementToDelete);
     var idToDelete = event.target.parentNode.id;
     Music.removeFromArray(idToDelete);
 });
 var counter = 0;
-$(document).on("click", "#moreMusic", function(event) {	
+$(document).on("click", "#moreMusic", (event)=> {	
 	if (counter < 1){
 		Music.loadNewSongs();
 		counter++;	
@@ -62,4 +66,3 @@ $(document).on("click", "#moreMusic", function(event) {
 		counter++;
 	}
 });
-
